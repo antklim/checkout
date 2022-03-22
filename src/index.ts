@@ -56,7 +56,13 @@ export class Checkout {
   }
 
   total(): number {
-    // TODO: apply pricing rules to total
-    return this.items.reduce((sum, item) => sum + item.Price, 0)
+    let total = this.items.reduce((sum, item) => sum + item.Price, 0)
+
+    this.pricingRules.forEach((rule) => {
+      const discount = rule.apply(this.items)
+      total -= discount
+    })
+
+    return total
   }
 }

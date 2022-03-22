@@ -25,6 +25,8 @@ describe("Checkout", () => {
     const got = co.total()
     expect(got).to.eql(want)
   })
+
+  it.skip("applies price rules to total")
 })
 
 describe("AppleTVDeal", () => {
