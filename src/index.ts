@@ -16,7 +16,22 @@ export const catalog: Catalog = {
 }
 
 interface PricingRule {
-  apply(): number
+  // retuns discount amount
+  apply(items: ReadonlyArray<CatalogItem>): number
+}
+
+export class AppleTVDeal implements PricingRule {
+  apply(items: readonly CatalogItem[]): number {
+    const appleTVs = items.filter((item) => item.SKU === "atv")
+    const discountNum = Math.floor(appleTVs.length / 3)
+    return discountNum * catalog.atv.Price
+  }
+}
+
+export class IPadBulkDeal implements PricingRule {
+  apply(items: readonly CatalogItem[]): number {
+    return 0
+  }
 }
 
 export class Checkout {
