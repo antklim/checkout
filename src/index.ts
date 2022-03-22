@@ -16,7 +16,7 @@ export const catalog: Catalog = {
 }
 
 interface PricingRule {
-  // retuns discount amount
+  // returns discount amount
   apply(items: ReadonlyArray<CatalogItem>): number
 }
 
